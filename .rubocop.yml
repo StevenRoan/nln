@@ -1,0 +1,47 @@
+AllCops:
+  # Exclude Rails generated files
+  Exclude:
+    - 'app/views/**/*.jb'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'bin/**'
+
+# Enable additional Rails cops to the inspection
+Rails:
+  Enabled: true
+
+# Forcing alphabetic ordering may broke the gem dependency
+Bundler/OrderedGems:
+  Enabled: false
+
+# Exclude DSL files
+Metrics/BlockLength:
+  Exclude:
+    - 'config/routes.rb'
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+
+# Default 80 chars was came from legacy punch card,
+# but it's too small for modern displays
+Metrics/LineLength:
+  Max: 120
+
+# Exclude Rails controller and model files
+# https://github.com/bbatsov/rubocop/issues/5160
+Style/Documentation:
+  Enabled: false
+
+# The older hash syntax is more readable for state machine
+Style/HashSyntax:
+  Exclude:
+    - '**/*_state_machine.rb'
+
+# Use -> for lamdba, regardless of how many lines
+# https://github.com/bbatsov/rubocop/issues/1520
+Style/Lambda:
+  EnforcedStyle: literal
+
+# Prefer brackets [:foo, :bar] over percent i[foo bar]
+Style/SymbolArray:
+  EnforcedStyle: brackets
